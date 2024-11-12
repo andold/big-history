@@ -26,10 +26,6 @@ public interface BigHistoryRepository extends JpaRepository<BigHistoryEntity, In
 		+ "		)	AND	("
 		+ "				:#{#form.end}	=	null"
 		+ "			OR	:#{#form.end}	>	x.end"
-		//	parent
-		+ "		)	AND	("
-		+ "				:#{#form.parentId}	=	null"
-		+ "			OR	x.parentId			=	:#{#form.parentId}"
 		//	keyword
 		+ "		)	AND	("
 		+ "				:#{#form.keyword}	=	null"
