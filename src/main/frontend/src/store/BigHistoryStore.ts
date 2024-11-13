@@ -54,7 +54,7 @@ class BigHistoryStore {
 		return TIME_LINE;
 	}
 	possible(significant: number, figure: number): number | null {
-		if (Math.round(significant) * Math.pow(10, figure) == Math.round(significant * Math.pow(10, figure))) {
+		if (Math.round(significant) * Math.pow(10, figure) === Math.round(significant * Math.pow(10, figure))) {
 			return Math.round(significant);
 		}
 
@@ -69,14 +69,14 @@ class BigHistoryStore {
 		return possibleLong.toFixed();
 	}
 	duration(duration: number): string {
-		if (duration == 0) {
+		if (duration === 0) {
 			return "0";
 		}
 		
 		if (duration < 1) {	//	빅뱅후 1초
 			const exponent = Math.log10(duration);
 			const significant = duration / Math.pow(10, exponent);
-			if  (significant == 1) {
+			if  (significant === 1) {
 				return `10E${exponent} 초`;
 			}
 
@@ -101,7 +101,7 @@ class BigHistoryStore {
 
 		const exponent = Math.log10(duration / ONE_SOLAR_YEAR);
 		const significant = duration / ONE_SOLAR_YEAR / Math.pow(10, exponent);
-		if  (significant == 1) {
+		if  (significant === 1) {
 			return `10E${exponent} 초`;
 		}
 
