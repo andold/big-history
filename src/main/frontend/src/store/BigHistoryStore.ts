@@ -202,4 +202,5 @@ class BigHistoryStore {
 		}];
 	}
 }
-export default new BigHistoryStore();
+const bigHistoryStore = new BigHistoryStore();
+export default bigHistoryStore;
