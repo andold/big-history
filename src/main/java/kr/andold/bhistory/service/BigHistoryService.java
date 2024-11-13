@@ -29,6 +29,7 @@ import kr.andold.bhistory.domain.ChronologyRow;
 import kr.andold.bhistory.domain.ScalableVectorGraphics;
 import kr.andold.bhistory.entity.BigHistoryEntity;
 import kr.andold.bhistory.repository.BigHistoryRepository;
+import kr.andold.bhistory.repository.BigHistorySpecification;
 import kr.andold.utils.Utility;
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,7 +47,7 @@ public class BigHistoryService {
 		log.info("{} list({}, {})", Utility.indentStart(), pageable, Utility.toStringJson(form));
 		long started = System.currentTimeMillis();
 
-		Page<BigHistoryEntity> paged = repository.search(pageable, form);
+		Page<BigHistoryEntity> paged = repository.findAll(BigHistorySpecification.searchWith(form), pageable);
 
 		log.info("{} #{} - list({}, {}) - {}", Utility.indentEnd(), "", pageable, Utility.toStringJson(form), Utility.toStringPastTimeReadable(started));
 		return paged;
@@ -315,7 +316,8 @@ public class BigHistoryService {
 			return list;
 		}
 
-		List<BigHistoryEntity> list = repository.search(form);
+//		List<BigHistoryEntity> list = repository.search(form);
+		List<BigHistoryEntity> list = repository.findAll(BigHistorySpecification.searchWith(form));
 
 		log.info("{} #{} - search({}) - {}", Utility.indentEnd(), Utility.size(list), Utility.toStringJson(form), Utility.toStringPastTimeReadable(started));
 		return list;
