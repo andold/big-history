@@ -79,7 +79,7 @@ function Header(props: any) {
 	const form = props.form as BigHistoryForm;
 	const { onChange } = props;
 
-	const [times, setTimes] = useState([]);
+	const [times, setTimes] = useState(store.times(0));
 	const [showUploadModal, setShowUploadModal] = useState(false);
 	const [showCreateModal, setShowCreateModal] = useState(false);
 
