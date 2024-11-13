@@ -15,7 +15,7 @@ import { One } from "../view/One";
 import { CreateModal } from "../view/CreateModal";
 
 // BigHistoryContainer.tsx
-export default ((_: any) => {
+const BigHistoryContainer = (_: any) => {
 	const [history, setHistory] = useState(null);
 	const [form, setForm] = useState<BigHistoryForm>({
 		start: UNIVERSE_AGE + 1000 * ONE_SOLAR_YEAR,
@@ -70,7 +70,7 @@ export default ((_: any) => {
 		/>
 		{modes[form.mode % modes.length]}
 	</>);
-});
+}
 
 
 function Header(props: any) {
@@ -194,3 +194,5 @@ function AgGridView(props: any) {
 		/>
 	</>);
 }
+
+export default BigHistoryContainer;
