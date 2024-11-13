@@ -50,7 +50,7 @@ NET stop %APACHE_TOMCAT%
 @REM
 CD  %DEPLOY_DIR%\doc_base
 DEL  /F /S /Q * > nul
-jar  -xf %SOURCE_DIR%\build\libs\bhistory-0.0.1-SNAPSHOT.war
+jar  -xf %SOURCE_DIR%\build\libs\big-history-0.0.1-SNAPSHOT.war
 @REM
 @REM
 @REM build

@@ -97,7 +97,7 @@ cd	$DEPLOY_DIR/doc_base
 rm -fr *
 #
 #
-FILE_NAME_WAR=$SOURCE_DIR/build/libs/bhistory-0.0.1-SNAPSHOT.war
+FILE_NAME_WAR=$SOURCE_DIR/build/libs/big-history-0.0.1-SNAPSHOT.war
 echo "Extract files from in $FILE_NAME_WAR"
 jar -xf $FILE_NAME_WAR
 #
