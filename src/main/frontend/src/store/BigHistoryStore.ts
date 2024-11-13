@@ -10,7 +10,7 @@ const cellStyleCenter = { textAlign: "center", padding: 1, };
 export const ONE_SOLAR_YEAR = 31556926.08;	//	1년, 초
 export const UNIVERSE_AGE = 13799000000.0 * ONE_SOLAR_YEAR;	// AD
 const rem = 16;
-const TIME_LINE: any[] = [
+export const TIME_LINE: any[] = [
 	[0 * Math.pow(10, 0) * ONE_SOLAR_YEAR, 0, 0, rem, 0],	//	0초
 	[1 * Math.pow(10, 0) * ONE_SOLAR_YEAR, 0, 8, rem, 50],	//	1초
 	[1 * Math.pow(10, 8) * ONE_SOLAR_YEAR, Math.pow(10, 8) * ONE_SOLAR_YEAR, 8, -0, 16],	//	1억년

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
 import { AgGridReact } from "ag-grid-react";
 import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 import { UploadModal } from "../view/UploadModal";
@@ -8,7 +7,7 @@ import { UploadModal } from "../view/UploadModal";
 import { BigHistoryForm } from "../model/BigHistoryModel";
 
 // store
-import store, { ONE_SOLAR_YEAR, UNIVERSE_AGE } from "../store/BigHistoryStore";
+import store, { ONE_SOLAR_YEAR, UNIVERSE_AGE, TIME_LINE, } from "../store/BigHistoryStore";
 
 // view
 import LandscapeView from "../view/LandscapeView";
@@ -60,9 +59,8 @@ export default ((_: any) => {
 		*/
 	];
 	useEffect(() => {
-		axios.get("./api/big-history/0?expandChildren=true")
-			.then(response => setHistory(response.data))
-			.catch(error => console.log(error))
+		store.root({}
+			, (histories: any) => setHistory(histories));
 	}, []);
 
 	return (<>
@@ -79,12 +77,11 @@ function Header(props: any) {
 	const form = props.form as BigHistoryForm;
 	const { onChange } = props;
 
-	const [times, setTimes] = useState(store.times(0));
+	const [times, setTimes] = useState(TIME_LINE);
 	const [showUploadModal, setShowUploadModal] = useState(false);
 	const [showCreateModal, setShowCreateModal] = useState(false);
 
 	useEffect(() => {
-		setTimes(store.times(0));
 	}, []);
 
 	return (<>
@@ -95,13 +92,13 @@ function Header(props: any) {
 						onChange={(event: any) => onChange && onChange({ start: event.target.value, })}
 					>
 						<option value="">start</option>
-						{times.map((time: any) => (<option key={`start-${time[0]}`} value={time[0]}>{store.format(time[0])}</option>))}
+						{times.map((time: any) => (<option key={Math.random()} value={time[0]}>{store.format(time[0])}</option>))}
 					</Form.Select>
 					<Form.Select size="sm" className="bg-dark text-white" value={form.end || ""}
 						onChange={(event: any) => onChange && onChange({ end: event.target.value, })}
 					>
 						<option value="">end</option>
-						{times.map((time: any) => (<option key={`end-${time[0]}`} value={time[0]}>{store.format(time[0])}</option>))}
+						{times.map((time: any) => (<option key={Math.random()} value={time[0]}>{store.format(time[0])}</option>))}
 					</Form.Select>
 				</InputGroup>
 			</Col>
