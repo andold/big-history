@@ -43,6 +43,7 @@ CALL gradlew.bat build -Pprofile=%PROFILE% -x test
 @REM
 NET stop %APACHE_TOMCAT%
 TIMEOUT 4
+NET stop %APACHE_TOMCAT%
 @REM
 @REM
 @REM build
