@@ -2,13 +2,13 @@
 @REM
 @REM profile n100
 @REM
-SET PROFILE=n100
-SET INSTALL_SCRIPT_FILE_NAME=install-bhistory-%PROFILE%.bat
-SET DEPLOY_SCRIPT_FILE_NAME=deploy.bat
-SET SOURCE_DIR=C:\src\github\big-history
-SET DEPLOY_DIR=C:\deploy\bhistory
-SET APACHE_TOMCAT=tomcat10
-SET LC_ALL=ko_KR.UTF-8
+@SET PROFILE=n100
+@SET INSTALL_SCRIPT_FILE_NAME=install-bhistory-%PROFILE%.bat
+@SET DEPLOY_SCRIPT_FILE_NAME=deploy.bat
+@SET SOURCE_DIR=C:\src\github\big-history
+@SET DEPLOY_DIR=C:\deploy\bhistory
+@SET APACHE_TOMCAT=tomcat10
+@SET LC_ALL=ko_KR.UTF-8
 @REM
 @REM
 @REM start
