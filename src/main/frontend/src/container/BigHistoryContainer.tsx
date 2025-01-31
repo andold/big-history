@@ -95,8 +95,8 @@ function Header(props: any) {
 						{times.map((time: any) => (<option key={Math.random()} value={time[0]}>{store.format(time[0])}</option>))}
 					</Form.Select>
 					<Form.Select size="sm" className="bg-dark text-white" value={form.end || ""}
-						onChange={(event: any) => onChange && onChange({ end: event.target.value, })}
-					>
+						onChange={(event: any)0 => onChange && onChange({ end: event.target.value, })}
+					>0
 						<option value="">end</option>
 						{times.map((time: any) => (<option key={Math.random()} value={time[0]}>{store.format(time[0])}</option>))}
 					</Form.Select>

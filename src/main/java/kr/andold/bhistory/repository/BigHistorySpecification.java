@@ -22,10 +22,10 @@ public class BigHistorySpecification {
 	            predicates.add(builder.like(root.get("keyword"), "%" + form.getKeyword() + "%"));
 	        }
 	        if (form.getStart() != null) {
-	            predicates.add(builder.equal(root.get("end"), form.getStart()));
+	            predicates.add(builder.greaterThanOrEqualTo(root.get("end"), form.getStart()));
 	        }
 	        if (form.getEnd() != null) {
-	            predicates.add(builder.equal(root.get("start"), form.getEnd()));
+	            predicates.add(builder.lessThanOrEqualTo(root.get("start"), form.getEnd()));
 	        }
 	        return builder.and(predicates.toArray(new Predicate[0]));
 	    });
