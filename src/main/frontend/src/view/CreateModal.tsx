@@ -29,7 +29,7 @@ export function CreateModal(props: any) {
 	}
 	function onChangeStart(event: any) {
 		const text = event.target.value;
-		fetch("./api/big-history/parse-date-time?text=" + text, {
+		fetch("./api/parse-date-time?text=" + text, {
 	        method: "GET",
 	    })
 	    .then((response) => {
@@ -43,7 +43,7 @@ export function CreateModal(props: any) {
 	}
 	function onChangeEnd(event: any) {
 		const text = event.target.value;
-		fetch("./api/big-history/parse-date-time?text=" + text, {
+		fetch("./api/parse-date-time?text=" + text, {
 	        method: "GET",
 	    })
 	    .then((response) => {
@@ -56,7 +56,7 @@ export function CreateModal(props: any) {
 	    });
 	}
 	function onCreate() {
-		fetch("./api/big-history", {
+		fetch("./api", {
 		        method: "POST",
 		        headers: { "Content-Type": "application/json" },
 		        body: JSON.stringify({
@@ -76,7 +76,7 @@ export function CreateModal(props: any) {
 	        })
 	        .then(function (result) {
 				console.log(result);
-				onCreated(result);
+				onCreated && onCreated(result);
 	        });
 	}
 

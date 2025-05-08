@@ -11,12 +11,10 @@ import store, { ONE_SOLAR_YEAR, UNIVERSE_AGE, TIME_LINE, } from "../store/BigHis
 
 // view
 import LandscapeView from "../view/LandscapeView";
-import { One } from "../view/One";
 import { CreateModal } from "../view/CreateModal";
 
 // BigHistoryContainer.tsx
-const BigHistoryContainer = (_: any) => {
-	const [history, setHistory] = useState(null);
+export default function BigHistoryContainer(_: any) {
 	const [form, setForm] = useState<BigHistoryForm>({
 		start: UNIVERSE_AGE + 1000 * ONE_SOLAR_YEAR,
 		end: UNIVERSE_AGE + 2050 * ONE_SOLAR_YEAR,
@@ -41,27 +39,7 @@ const BigHistoryContainer = (_: any) => {
 		<AgGridView
 			form={form}
 		/>,
-		/*
-		<div className="position-static">
-			<div className="position-absolute m-0 p-0">
-				<One
-					history={history}
-					rectangle={{
-						position: {
-							x: 0,
-							y: 0,
-						}
-					}}
-				/>
-			</div>
-		</div>
-		,
-		*/
 	];
-	useEffect(() => {
-		store.root({}
-			, (histories: any) => setHistory(histories));
-	}, []);
 
 	return (<>
 		<Header
@@ -77,12 +55,10 @@ function Header(props: any) {
 	const form = props.form as BigHistoryForm;
 	const { onChange } = props;
 
-	const [times, setTimes] = useState(TIME_LINE);
+	const times = TIME_LINE;
+
 	const [showUploadModal, setShowUploadModal] = useState(false);
 	const [showCreateModal, setShowCreateModal] = useState(false);
-
-	useEffect(() => {
-	}, []);
 
 	return (<>
 		<Row className="mx-0 py-1 bg-dark border-top border-secondary">
@@ -96,7 +72,7 @@ function Header(props: any) {
 					</Form.Select>
 					<Form.Select size="sm" className="bg-dark text-white" value={form.end || ""}
 						onChange={(event: any) => onChange && onChange({ end: event.target.value, })}
-					>
+					>0
 						<option value="">end</option>
 						{times.map((time: any) => (<option key={Math.random()} value={time[0]}>{store.format(time[0])}</option>))}
 					</Form.Select>
@@ -194,5 +170,3 @@ function AgGridView(props: any) {
 		/>
 	</>);
 }
-
-export default BigHistoryContainer;
