@@ -2,11 +2,13 @@
 @REM
 @REM profile n100
 @REM
+@SET PROJECT=bhistory
+@SET VERSION=0.0.1-SNAPSHOT
 @SET PROFILE=n100
-@SET INSTALL_SCRIPT_FILE_NAME=install-bhistory-%PROFILE%.bat
+@SET INSTALL_SCRIPT_FILE_NAME=install-%PROJECT%-%PROFILE%.bat
 @SET DEPLOY_SCRIPT_FILE_NAME=deploy.bat
 @SET SOURCE_DIR=C:\src\github\big-history
-@SET DEPLOY_DIR=C:\deploy\bhistory
+@SET DEPLOY_DIR=C:\deploy\%PROJECT%
 @SET APACHE_TOMCAT=tomcat10
 @SET LC_ALL=ko_KR.UTF-8
 @REM
@@ -28,7 +30,7 @@ CALL gradlew.bat clean -Pprofile=%PROFILE% -x test
 @REM react npm install
 @REM
 cd %SOURCE_DIR%\src\main\frontend
-CALL npm install
+CALL npm install --force
 CALL npm audit fix --force
 CALL npm install react-scripts@latest --save
 @REM
@@ -50,7 +52,7 @@ NET stop %APACHE_TOMCAT%
 @REM
 CD  %DEPLOY_DIR%\doc_base
 DEL  /F /S /Q * > nul
-jar  -xf %SOURCE_DIR%\build\libs\big-history-0.0.1-SNAPSHOT.war
+jar  -xf %SOURCE_DIR%\build\libs\big-history-%VERSION%.war
 @REM
 @REM
 @REM build
