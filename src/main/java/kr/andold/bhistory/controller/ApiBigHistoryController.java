@@ -67,6 +67,18 @@ public class ApiBigHistoryController {
 		return list;
 	}
 
+	@GetMapping(value = {"/download"})
+	@ResponseBody
+	public String download() {
+		log.info("{} download()", Utility.indentStart());
+
+		List<BigHistoryEntity> list = service.search(null);
+		String response = Utility.toStringJsonLine(list);
+
+		log.info("{} 『{}』 download()", Utility.indentEnd(), Utility.ellipsis(response, 64));
+		return response;
+	}
+
 	@PostMapping(value = {"upload"})
 	public @ResponseBody Map<String, List<BigHistoryEntity>> bigHistoryUpload(@RequestParam MultipartFile file, String content) {
 		log.info("{} bigHistoryUpload({}, {})", Utility.indentStart(), "...", Utility.toStringJson(content, 64));

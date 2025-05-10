@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
-import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
-import { UploadModal } from "../view/UploadModal";
+import { Button, Col, Dropdown, Form, InputGroup, Row } from "react-bootstrap";
 
 // model
 import { BigHistoryForm } from "../model/BigHistoryModel";
@@ -12,6 +11,7 @@ import store, { ONE_SOLAR_YEAR, UNIVERSE_AGE, TIME_LINE, } from "../store/BigHis
 // view
 import LandscapeView from "../view/LandscapeView";
 import { CreateModal } from "../view/CreateModal";
+import { UploadModal } from "../view/UploadModal";
 
 // BigHistoryContainer.tsx
 export default function BigHistoryContainer(_: any) {
@@ -89,8 +89,15 @@ function Header(props: any) {
 			</Col>
 			<Col xs="auto" className="text-white text-start mx-1">
 				<InputGroup size="sm">
+					<Dropdown>
+						<Dropdown.Toggle id="dropdown-menu" size="sm" >Menu</Dropdown.Toggle>
+						<Dropdown.Menu>
+							<Dropdown.Item onClick={(param: any) => store.download({})}>Download</Dropdown.Item>
+							<Dropdown.Divider />
+							<Dropdown.Item onClick={(param: any) => store.download({})}>Download</Dropdown.Item>
+						</Dropdown.Menu>
+					</Dropdown>
 					<Button size="sm" variant="secondary" className="ms-1" onClick={(_: any) => setShowCreateModal(true)}>Create</Button>
-					<Button size="sm" variant="secondary" className="ms-1" onClick={(_: any) => setShowUploadModal(true)}>Download</Button>
 					<Button size="sm" variant="secondary" className="ms-1" onClick={(_: any) => setShowUploadModal(true)}>Upload</Button>
 					<Button size="sm" variant="secondary" className="ms-1" title={form!.mode!.toString()} onClick={(_: any) => onChange && onChange({ mode: form!.mode + 1, })}>mode</Button>
 				</InputGroup>

@@ -41,6 +41,9 @@ class BigHistoryStore {
 	search(request: any, onSuccess?: any, onError?: any, element?: any) {
 		repository.search(request, onSuccess, onError, element);
 	}
+	download(request: any, onSuccess?: any, onError?: any, element?: any) {
+		repository.download(request, onSuccess, onError, element);
+	}
 	update(request: any, onSuccess?: any, onError?: any, element?: any) {
 		repository.update(request, onSuccess, onError, element);
 	}
