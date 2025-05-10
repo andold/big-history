@@ -46,30 +46,25 @@ public class ScheduledTasks {
 	// 1초쉬고
 	@Scheduled(initialDelay = 1000 * 16, fixedDelay = 1000)
 	public void secondly() {
-		log.trace("{} secondly()", Utility.indentStart());
-		long started = System.currentTimeMillis();
-
 		jobService.run();
-
-		log.trace("{} secondly() - {}", Utility.indentEnd(), Utility.toStringPastTimeReadable(started));
 	}
 
 	// 매분
 	@Scheduled(cron = "0 * * * * *")
 	public void minutely() {
-		log.debug("{} minutely()", Utility.indentStart());
-
 		jobService.status(zookeeperClient.status(true));
-
-		log.debug("{} minutely()", Utility.indentEnd());
 	}
 
 	// 매일
 	@Scheduled(cron = "0 0 0 * * *")
 	public void daily() {
+		log.info("{} daily()", Utility.indentStart());
+
 		if (zookeeperClient.isMaster()) {
 			JobService.getQueue2().offer(BackupJob.builder().userDataPath(getUserDataPath()).build());
 		}
+
+		log.info("{} daily()", Utility.indentEnd());
 	}
 
 }

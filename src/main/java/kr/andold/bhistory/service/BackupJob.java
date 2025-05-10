@@ -30,25 +30,27 @@ public class BackupJob implements JobInterface {
 
 	@Override
 	public STATUS call() throws Exception {
-		log.debug("{} call()", Utility.indentStart());
+		log.info("{} BackupJob::call() - 『{}』『{}』", Utility.indentStart(), userDataPath, timeout);
 		long started = System.currentTimeMillis();
 
 		BackupJob that = (BackupJob) ApplicationContextProvider.getBean(BackupJob.class);
-		that.setTimeout(getTimeout());
+		that.setUserDataPath(getUserDataPath());
 		STATUS result = that.main();
 		
-		log.debug("{} 『#{}』 call() - {}", Utility.indentEnd(), result, Utility.toStringPastTimeReadable(started));
+		log.info("{} 『#{}』 BackupJob::call() - 『{}』『{}』『{}』", Utility.indentEnd(), result, userDataPath, timeout, Utility.toStringPastTimeReadable(started));
 		return result;
 	}
 
 	private STATUS main() throws Exception {
-		//	calendar.ics
+		log.info("{} BackupJob::main() - 『{}』『{}』", Utility.indentStart(), userDataPath, timeout);
+
 		List<BigHistoryEntity> histories = service.search(null);
 		String text = Utility.toStringJsonLine(histories);
 		String filename = String.format("%s/bhistory.json", userDataPath);
 		Utility.write(filename, text);
-		log.debug("{} backup() - 『{}』『{}』", Utility.indentMiddle(), filename, Utility.ellipsis(text, 32, 32));
-		return null;
+
+		log.info("{} 『{}』『{}』 BackupJob::main() - 『{}』『{}』", Utility.indentStart(), filename, Utility.ellipsis(text, 32, 32), userDataPath, timeout);
+		return STATUS.SUCCESS;
 	}
 
 }
